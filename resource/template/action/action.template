@@ -1,0 +1,79 @@
+/**
+ * Created by liulaoye on ##date##.
+ */
+
+import api from '../api/index';
+
+export const ##actionName##_LIST_QUERY = '##actionName##_LIST_QUERY';
+export const ##actionName##_LIST_QUERY_PENDING = '##actionName##_LIST_QUERY_PENDING';
+export const ##actionName##_LIST_QUERY_SUCCESS = '##actionName##_LIST_QUERY_SUCCESS';
+export const ##actionName##_LIST_QUERY_ERROR = '##actionName##_LIST_QUERY_ERROR';
+
+export const ##actionName##_OPERATION = '##actionName##_OPERATION';
+export const ##actionName##_OPERATION_PENDING = '##actionName##_OPERATION_PENDING';
+export const ##actionName##_OPERATION_SUCCESS = '##actionName##_OPERATION_SUCCESS';
+export const ##actionName##_OPERATION_ERROR = '##actionName##_OPERATION_ERROR';
+export const OPEN_##actionName##_MODAL = 'OPEN_##actionName##_MODAL';
+
+/**
+ * 获取##className##的列表信息
+ * @param cnd               查询条件
+ * @param pageNumber        当前页数
+ * @param pageSize          每页的记录数量
+ *
+ */
+export function query##className##List(cnd = null, pageNumber = 0, pageSize = 20) {
+    return {
+        type: ##actionName##_LIST_QUERY,
+        meta: {
+            cnd,
+            pageNumber,
+            pageSize
+        },
+        payload: {
+            promise: api.get('##varName##/query', {
+                params: {
+                    cnd,
+                    pageNumber,
+                    pageSize
+                }
+            })
+        }
+    }
+}
+/**
+ * 打开某个对话框
+ * 添加和修改对象统一到一个对话框中处理
+
+ * @param modal         对话框类型   1:增 改 2:删除
+ */
+export function open##className##Modal(modal) {
+    return {
+        type: OPEN_##actionName##_MODAL,
+        modal
+    }
+}
+/**
+ *
+ * 添加和修改对象统一到一个操作中处理
+ * @param op            操作类型1:增 改 2:、删除
+ * @param item          当前要操作的##className##
+ */
+export function do##className##Operation(op, item) {
+    return {
+        type: ##actionName##_OPERATION,
+        meta: {
+            op,
+            item
+            //path,
+        },
+        payload: {
+            promise: api.get('##varName##/operation', {
+                params: {
+                    op,
+                    ...item
+                }
+            })
+        }
+    }
+}

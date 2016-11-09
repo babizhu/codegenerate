@@ -1,0 +1,44 @@
+/**
+ * Created by liulaoye on ##date##.
+ * ##className##管理容器
+ */
+
+import React, {Component, PropTypes} from 'react'
+import {connect} from 'react-redux'
+//import {notification, Spin} from 'antd'
+import {AnimEnhance} from './AnimEnhance'
+
+import ##className##List from '../components/##varName##/##className##List'
+import * as ##varName##Actions from '../actions/##className##';
+import '../css/##varName##.scss'
+class ##className##Container extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+
+    render() {
+
+        return (
+            <div className='##varName##'>
+
+                <##className##List {...this.props}/>
+            </div>
+        )
+    }
+}
+
+##className##Container.propTypes = {
+
+};
+
+function mapStateToProps(state, ownProps) {
+
+    return {
+        ##varName##: state.##varName##
+    }
+}
+
+
+
+export default connect(mapStateToProps, ##varName##Actions)(AnimEnhance(##className##Container));
